@@ -1,17 +1,24 @@
 import './App.css';
-import SignUpPage from './Front/Authentification/Pages/SignUpPage';
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
+import SignUpPage from './Front/Authentification/Pages/SignUpPage'
 import HomePage from './Front/Home/Page/HomePage';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from './Front/Dashboard/Page/Dashboard';
+import UserProfile from './Front/User/Page/UserProfile';
+import UserProfileInterface from './Front/User/Components/UserProfileInterface';
 function App() {
   return (
-    <Router>
-      <div>
+    <>
+      <Router>
         <Routes>
-          <Route exact path="/signup" element={<SignUpPage />} />
-          <Route exact path="/home" element={<HomePage />} />
+          <Route path="dash" element={<Dashboard />} >
+            <Route path="profile" element={<UserProfileInterface />} />
+          </Route>
+          <Route path="home" element={<HomePage />} />
+          <Route path="sign" element={<SignUpPage />} />
         </Routes>
-      </div>
-    </Router> 
+      </Router>
+      <Outlet />
+    </>
   );
 }
 
